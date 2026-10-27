@@ -10,8 +10,8 @@ on:
       - converted_to_draft
       - ready_for_review
 
-#permissions:
-#  pull-requests: write
+permissions:
+  pull-requests: write
 
 env:
   GH_TOKEN: ${{ github.token }}
