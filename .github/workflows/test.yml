@@ -25,7 +25,7 @@ jobs:
       - run: echo 'github.event.pull_request.draft:' "${{ github.event.pull_request.draft }}"
       - run: env
       - if: github.event.action == 'labeled'
-        run: gh pr edit "${{ github.event.pull_request.number }}" --repo "${{ github.repository }}" --add-label bug
+        run: gh pr edit "${{ github.event.pull_request.number }}" --repo "${{ github.repository }}" --remove-label bug
       - if: github.event.pull_request.draft || (github.event.pull_request.draft && github.event.pull_request.draft)
         run: echo is draft
       - if: false || (!github.event.pull_request.draft && !github.event.pull_request.draft)
