@@ -25,4 +25,4 @@ jobs:
       - run: echo 'github.event.pull_request.draft:' "${{ github.event.pull_request.draft }}"
       - run: env
       - if: github.event.action == 'converted_to_draft'
-        run: gh pr edit --add-label bug
+        run: gh pr edit "${{ github.event.pull_request.number }}" --repo "${{ github.repository }}" --add-label bug
