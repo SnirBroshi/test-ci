@@ -24,11 +24,17 @@ jobs:
       - run: echo 'github.event.action:' "${{ github.event.action }}"
       - run: echo 'github.event.label.name:' "${{ github.event.label.name }}"
       - run: echo 'github.event.pull_request.draft:' "${{ github.event.pull_request.draft }}"
+      - run: echo 'github.event.pull_request.state:' "${{ github.event.pull_request.state }}"
+      - run: echo 'github:' "${{ github }}"
       - run: env
       - if: github.event.pull_request.draft || (github.event.pull_request.draft && github.event.pull_request.draft)
         run: echo is draft
       - if: false || (!github.event.pull_request.draft && !github.event.pull_request.draft)
         run: echo not a draft
+      - if: github.event.pull_request.state == 'open'
+        run: echo is open
+      - if: github.event.pull_request.state == 'closed'
+        run: echo is closed
       - if: github.event.action == 'labeled' && github.event.label.name == 'bug'
         run: gh pr ready "${{ github.event.pull_request.number }}" --repo "${{ github.repository }}"
       - if: github.event.action == 'labeled' && github.event.label.name == 'accessibility'
